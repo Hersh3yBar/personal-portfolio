@@ -107,6 +107,7 @@ export function Navbar() {
   };
 
   return (
+    <>
     <header
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={{
@@ -234,8 +235,12 @@ export function Navbar() {
           </button>
         </div>
       </nav>
+    </header>
 
-      <AnimatePresence>
+    {/* drawer is a SIBLING of <header>, not a child — fixes a mobile Safari
+        clipping bug where backdrop-filter on the scrolled navbar would clip
+        the drawer down to the navbar's height. */}
+    <AnimatePresence>
         {mobileOpen && (
           <motion.div
             key="drawer"
@@ -280,7 +285,7 @@ export function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }
 
