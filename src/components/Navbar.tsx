@@ -237,38 +237,16 @@ export function Navbar() {
 
       <AnimatePresence>
         {mobileOpen && (
-          <>
-            {/* scrim — dims the rest of the page so drawer content can't bleed
-                through, and tapping it closes the drawer */}
-            <motion.button
-              key="drawer-scrim"
-              type="button"
-              aria-label="Close menu"
-              onClick={() => setMobileOpen(false)}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-              className="fixed inset-x-0 top-16 bottom-0 z-30 cursor-pointer md:hidden"
-              style={{ background: "rgba(0,0,0,0.55)" }}
-            />
-            <motion.div
-              key="drawer"
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", stiffness: 320, damping: 36 }}
-              className="fixed top-16 right-0 bottom-0 z-40 w-72 border-l p-6 md:hidden"
-              style={{
-                // fully opaque — no alpha, no backdrop-filter — so nothing
-                // can ghost through on mobile Safari
-                background: "var(--bg)",
-                borderColor: "var(--card-border)",
-                boxShadow: "-12px 0 32px rgba(0,0,0,0.35)",
-              }}
-              role="dialog"
-              aria-modal="true"
-            >
+          <motion.div
+            key="drawer"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
+            className="mobile-drawer fixed inset-x-0 top-16 bottom-0 z-40 overflow-y-auto p-6 md:hidden"
+            role="dialog"
+            aria-modal="true"
+          >
             <ul className="flex flex-col gap-1">
               {SECTIONS.map((s) => (
                 <li key={s.id}>
@@ -300,7 +278,6 @@ export function Navbar() {
               </li>
             </ul>
           </motion.div>
-          </>
         )}
       </AnimatePresence>
     </header>

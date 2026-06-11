@@ -253,6 +253,15 @@ html.lenis body {
   }
 }
 
+/* Mobile menu drawer — explicit hex backgrounds so it stays fully opaque on
+   mobile Safari (CSS-var inline styles sometimes don't render before paint). */
+.mobile-drawer {
+  background: #fafafa;
+}
+.dark .mobile-drawer {
+  background: #0a0a0f;
+}
+
 /* Light-mode neon: deep saturated blue with a subtler cyan halo
    so the text stays readable against a white background. */
 .neon-signature {
